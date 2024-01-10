@@ -4,7 +4,7 @@
 Built with the Next.js 14 App Router, TypeScript, Drizzle ORM, Tailwind, Neon DB, ShadCN, Lucide React, React Query, Next-Auth, & Upload Thing!
 
 
-![Alt text](https://utfs.io/f/28cb12e4-1dd9-4302-81ac-568445fdb262-as70l8.png)
+![Alt text](https://utfs.io/f/3a9089f0-ffbc-402c-b8a9-a27dd8ada8d6-tse4lt.png)
 
 ## Features 
 
