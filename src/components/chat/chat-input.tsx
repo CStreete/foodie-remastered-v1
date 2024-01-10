@@ -11,6 +11,8 @@ import { v4 as uuidv4 } from "uuid";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { Input } from "../ui/input";
+import { set } from "zod";
+import { newUserMessage } from "@/server/_actions/chat/new-message";
 
 interface ChatInputProps {
   isDisabled?: boolean;
@@ -20,6 +22,7 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [input, setInput] = useState<string>("");
+  const [image, setImage] = useState<string>("");
   const session = useSession();
 
   const {
@@ -29,6 +32,15 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
     updateMessage,
     setIsMessageUpdating,
   } = useContext(ChatContext);
+
+  const userMessage: TMessage = {
+    id: uuidv4(),
+    isUserMessage: true,
+    userId: session.data?.user.id as string,
+    timestamp: new Date(),
+    imageUrl: image as string,
+    content: input,
+  };
 
   const { mutate: sendMessage, isPending } = useMutation({
     mutationKey: ["sendMessage"],
@@ -41,6 +53,7 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
         },
         body: JSON.stringify({ content: messages }),
       });
+      await newUserMessage(input);
       return res.body;
     },
     onMutate(message) {
@@ -48,7 +61,8 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
     },
     onSuccess: async (stream) => {
       if (!stream) return;
-
+      setInput("");
+      setImage("");
       const id = uuidv4();
       const responseMessage: TMessage = {
         id: id,
@@ -56,6 +70,7 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
         userId: "foodie",
         timestamp: new Date(),
         content: "",
+        imageUrl: "",
       };
 
       addMessage(responseMessage);
@@ -73,21 +88,12 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
       }
 
       setIsMessageUpdating(false);
-      setInput("");
     },
     onError: (_, message) => {
       removeMessage(message.id);
       textAreaRef.current?.focus();
     },
   });
-
-  const userMessage: TMessage = {
-    id: uuidv4(),
-    isUserMessage: true,
-    userId: session.data?.user.id as string,
-    timestamp: new Date(),
-    content: input,
-  };
 
   return (
     <footer className="p-4 lg:pb-10 pb-20">
@@ -129,7 +135,9 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
             const file = e.target.files[0];
             const reader = new FileReader();
             reader.readAsDataURL(file);
-            // set Image to be sent
+            reader.onload = () => {
+              setImage(reader.result as string);
+            };
           }}
         />
         <Button

@@ -10,6 +10,7 @@ const defaultMessages: TMessage[] = [
       "Hejsan! Jag är Foodie, din personliga AI som hjälper dig med din mat. Ladda upp en bild på din mat eller ställ frågor till mig kopplat till matlagning så ska jag försöka hjälpa dig.",
     timestamp: new Date(),
     isUserMessage: false,
+    imageUrl: "",
     userId: "",
   },
 ];

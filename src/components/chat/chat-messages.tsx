@@ -19,7 +19,7 @@ import { Separator } from "../ui/separator";
 import { ne } from "drizzle-orm";
 import { tree } from "next/dist/build/templates/app-page";
 import { cn } from "@/lib/utils";
-import { User2Icon } from "lucide-react";
+import { User, User2Icon } from "lucide-react";
 
 const ChatMessages = () => {
   const { messages } = useContext(ChatContext);
@@ -35,6 +35,7 @@ const ChatMessages = () => {
           {messages.map((m, indx) => {
             return (
               <div
+                key={m.id}
                 className={cn("flex items-end", {
                   "justify-start": m.isUserMessage,
                 })}
@@ -81,10 +82,23 @@ const ChatMessages = () => {
                       "bg-secondary ": !m.isUserMessage,
                     })}
                   >
+                    {m.isUserMessage ? (
+                      <div className="  w-full flex items-start">
+                        {m.imageUrl !== "" ? (
+                          <Image
+                            src={m.imageUrl as string}
+                            alt="User Image"
+                            height={300}
+                            width={300}
+                            className="w-full rounded-lg"
+                          />
+                        ) : null}
+                      </div>
+                    ) : null}
                     {typeof m.content === "string" ? (
                       <Markdown
                         className={cn("prose", {
-                          "text-zinc-50": m.isUserMessage,
+                          "text-zinc-50 ": m.isUserMessage,
                         })}
                       >
                         {m.content}

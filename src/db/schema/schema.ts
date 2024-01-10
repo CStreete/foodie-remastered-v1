@@ -189,6 +189,7 @@ export const chatMessage = pgTable("chat_message", {
   content: text("content").notNull(),
   isUserMessage: boolean("isUserMessage").notNull(),
   userId: text("userId").notNull(),
+  imageUrl: text("imageUrl"),
   timestamp: timestamp("timestamp", { mode: "date" }).notNull(),
 });
 
