@@ -4,7 +4,7 @@
 Built with the Next.js 14 App Router, TypeScript, Drizzle ORM, Tailwind, Neon DB, ShadCN, Lucide React, React Query, Next-Auth, & Upload Thing!
 
 
-![Alt text](https://utfs.io/f/28cb12e4-1dd9-4302-81ac-568445fdb262-as70l8.png)
+![Alt text](https://utfs.io/f/a78736d7-53d4-4f5e-87af-ff3139dcd09d-pkfnn0.png)
 
 ## Features 
 
@@ -15,6 +15,7 @@ Built with the Next.js 14 App Router, TypeScript, Drizzle ORM, Tailwind, Neon DB
 - A Beautiful Profile View
 - Following and UnFollowing Functionallity
 - Dark and Light Mode
+- Full Power of Server Actions + React Query
 - OpenAi Streaming
 - A Personal AI Chat Room For Everything Food Related
 - Modern Data Fetching With Server Action + React Query
