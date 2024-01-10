@@ -15,6 +15,7 @@ Built with the Next.js 14 App Router, TypeScript, Drizzle ORM, Tailwind, Neon DB
 - A Beautiful Profile View
 - Following and UnFollowing Functionallity
 - Dark and Light Mode
+- Full Power of Server Actions + React Query
 - OpenAi Streaming
 - A Personal AI Chat Room For Everything Food Related
 - Modern Data Fetching With Server Action + React Query
