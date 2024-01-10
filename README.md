@@ -22,5 +22,6 @@ Built with the Next.js 14 App Router, TypeScript, Drizzle ORM, Tailwind, Neon DB
 - Beautiful UI with ShadCN
 - Easy PostgreSQL DB Setup With Neon DB
 - Image Storing & Image Upload with Upload Thing
+- Authentication With NextAuth
 - 100% TypeScript
   
