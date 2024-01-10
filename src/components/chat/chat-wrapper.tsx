@@ -6,14 +6,16 @@ import { Avatar, AvatarFallback } from "../ui/avatar";
 import { FoodieLogo } from "../foodie-icon";
 import ChatMessages from "./chat-messages";
 import ChatInput from "./chat-input";
+import { TMessage } from "@/db/schema/schema";
 interface ChatWrapperProps {
   image: string;
+  initialMessages?: TMessage[];
 }
 const ChatWrapper = ({ image }: ChatWrapperProps) => {
   return (
     <ChatContextProvider>
       <Fragment>
-        <ScrollArea className="flex-1 p-4 space-y-4 h-full lg:pl-72">
+        <ScrollArea className="flex-1 p-4 space-y-4 h-full xl:pl-72    ">
           <ChatMessages />
         </ScrollArea>
         <ChatInput />
