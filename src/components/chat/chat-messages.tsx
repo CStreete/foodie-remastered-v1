@@ -98,7 +98,7 @@ const ChatMessages = () => {
                     {typeof m.content === "string" ? (
                       <Markdown
                         className={cn("prose", {
-                          "text-zinc-50 ": m.isUserMessage,
+                          "text-primary ": m.isUserMessage,
                         })}
                       >
                         {m.content}

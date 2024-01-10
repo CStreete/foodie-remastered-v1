@@ -18,7 +18,7 @@ const FoodieAI = async () => {
     <div className="flex flex-col md:flex-row h-screen lg:px-10 lg:ml-[300px] ">
       <div className="flex flex-col flex-1">
         <header className="flex items-center justify-between p-4">
-          <h2 className="text-xl font-semibold">Min Ai</h2>
+          <h2 className="text-xl font-semibold">FoodieAi</h2>
         </header>
         <ChatWrapper image={""} />
       </div>

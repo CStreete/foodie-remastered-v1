@@ -109,7 +109,7 @@ const Comments = ({
                 </div>
 
                 <div className=" text-sm flex flex-col">
-                  <span>3 gilla markeringar</span>
+                  <span>{recipe.likes.length} gilla markeringar</span>
                   <span>1 dag sen</span>
                 </div>
               </div>

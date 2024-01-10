@@ -21,6 +21,7 @@ export const AuthProviders = () => {
         <>
           <Button
             variant={"link"}
+            disabled
             onClick={() => setRegistration("register")}
             className=" flex text-textPink   justify-center items-center cursor-pointer"
           >
@@ -55,8 +56,8 @@ export const AuthProviders = () => {
               size={"lg"}
               className=" w-72 text-base font-bold"
             >
-              <GitHubIcon className=" w-5 h-5 absolute left-0 ml-2  " /> Logga
-              in med github
+              <GitHubIcon className=" fill-secondary  rounded-full w-5 h-5 absolute left-0 ml-2  " />{" "}
+              Logga in med github
             </Button>
           </div>
         </>
