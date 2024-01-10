@@ -1,0 +1,1 @@
+ALTER TABLE "user_follow" ADD COLUMN "id" text NOT NULL;
