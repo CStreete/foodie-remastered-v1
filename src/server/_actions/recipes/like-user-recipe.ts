@@ -24,7 +24,10 @@ export const likeRecipe = async (formData: FormData) => {
     const isRecipeLiked = !!isLiked;
 
     if (isRecipeLiked) {
-      await db.delete(likes).where(eq(likes.recipeId, recipeId)).execute();
+      await db
+        .delete(likes)
+        .where(and(eq(likes.recipeId, recipeId), eq(likes.userId, user.id)))
+        .execute();
       revalidatePath(`/home`);
       return { success: true, recipe: null };
     } else {
