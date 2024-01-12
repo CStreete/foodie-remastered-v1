@@ -212,6 +212,10 @@ type Like = typeof likes.$inferSelect;
 
 export type TComment = InferSelectModel<typeof comment>;
 
+export type UserWithRecipes = TUser & {
+  recipes: Recipe[];
+};
+
 export type RecipeWithRelations = Recipe & {
   ingredients: Ingredient[];
   steps: Step[];

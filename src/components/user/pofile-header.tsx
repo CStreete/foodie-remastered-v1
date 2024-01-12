@@ -1,4 +1,4 @@
-import { TUser, follow } from "@/db/schema/schema";
+import { TUser, UserWithRecipes, follow } from "@/db/schema/schema";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
@@ -6,10 +6,11 @@ import { Settings } from "lucide-react";
 import FollowButton from "./follow-button";
 import { userFollowers } from "@/server/_actions/users/get-user-followers";
 import { currentUser } from "@/lib/currentUser";
+import ProfileContent from "./profile-content";
 
 interface ProfileHeaderProps {
   isUserProfile: boolean;
-  user: TUser;
+  user: UserWithRecipes;
 }
 
 export const ProfileHeader = async ({
@@ -25,16 +26,16 @@ export const ProfileHeader = async ({
   );
 
   return (
-    <div className=" flex flex-col ">
-      <div className=" bg-primary-foreground w-full h-60 flex items-start p-5 rounded-lg ">
+    <div className=" flex flex-col min-w-0 lg:w-[600px]">
+      <div className=" bg-primary-foreground w-full lg:h-60 h-52 flex items-start  rounded-lg p-3 ">
         <div className=" flex">
-          <Avatar className=" lg:w-[150px] lg:h-[150px] w-[80px] h-[80px]">
+          <Avatar className=" xl:w-[120px] xl:h-[120px] w-[70px] h-[70px]">
             <AvatarImage alt="Avatar" src={user.image as string} />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <div className=" lg:pl-20 pl-10 flex flex-col ">
             <div className=" flex items-center">
-              <p className=" text-xl truncate font-bold">{user.name}</p>
+              <p className="truncate font-bold">{user.name}</p>
 
               {isUserProfile ? (
                 <div className=" flex items-center">
@@ -84,7 +85,7 @@ export const ProfileHeader = async ({
           </div>
         </div>
       </div>
-      {/* <ProfileContent userRecipes={recipes} />   */}
+      <ProfileContent user={user} />
     </div>
   );
 };

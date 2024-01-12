@@ -5,14 +5,12 @@ import { currentUser } from "@/lib/currentUser";
 import { randomUUID } from "crypto";
 import { revalidatePath } from "next/cache";
 
-export const newComment = async (formData: FormData) => {
+export const newComment = async (recipeId: string, content: string) => {
   const user = await currentUser();
   if (!user) {
     return null;
   }
   try {
-    const recipeId = formData.get("recipeId") as string;
-    const content = formData.get("content") as string;
     const comments = await db.insert(comment).values({
       id: randomUUID(),
       recipeId: recipeId,

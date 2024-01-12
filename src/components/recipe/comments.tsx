@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useRef, useState } from "react";
 import { CardContent, Card } from "@/components/ui/card";
 import Image from "next/image";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -21,6 +21,8 @@ import { RecipeWithRelations } from "@/db/schema/schema";
 import { useSession } from "next-auth/react";
 import { newComment } from "@/server/_actions/recipes/comment-recipie";
 import { LikeButton } from "./like-button";
+import { cn } from "@/lib/utils";
+import { CommentField } from "./comment-field";
 
 const Comments = ({
   recipe,
@@ -33,8 +35,6 @@ const Comments = ({
 }) => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const user = useSession();
-
-  const [comments, setComments] = useState<RecipeWithRelations["comments"]>([]);
 
   if (isDesktop) {
     return (
@@ -121,18 +121,7 @@ const Comments = ({
                   />
                   <AvatarFallback>Y</AvatarFallback>
                 </Avatar>
-                <form action={newComment} className="flex flex-grow">
-                  <input name="recipeId" type="hidden" value={recipe.id} />
-                  <Input
-                    className="flex-grow focus-visible:ring-0 focus-visible:outline-none focus-visible:border-none border-none shadow-none"
-                    id="content"
-                    name="content"
-                    type="text"
-                    placeholder="Skriv en kommentar..."
-                  />
-
-                  <Button variant={"ghost"}>Publicera</Button>
-                </form>
+                <CommentField recipieId={recipe.id} />
               </div>
             </div>
           </div>
@@ -187,16 +176,7 @@ const Comments = ({
                 />
                 <AvatarFallback>Y</AvatarFallback>
               </Avatar>
-              <form action={newComment} className="flex flex-grow">
-                <input name="recipeId" type="hidden" value={recipe.id} />
-                <Input
-                  className="flex-grow focus-visible:ring-0 focus-visible:outline-none focus-visible:border-none border-none shadow-none"
-                  type="text"
-                  placeholder="Skriv en kommentar..."
-                />
-
-                <Button variant={"ghost"}>Publicera</Button>
-              </form>
+              <CommentField recipieId={recipe.id} />
             </div>
           </div>
         </div>
